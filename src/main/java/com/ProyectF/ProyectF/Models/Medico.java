@@ -2,6 +2,8 @@ package com.ProyectF.ProyectF.Models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,6 +17,10 @@ import java.util.List;
 public class Medico {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
+    private Long id;
+
     @Column(name = "tarjeta_profesional")
     private int tarjetaProfesional;
 
@@ -30,14 +36,11 @@ public class Medico {
     @Column(name = "correo")
     private String correo;
 
-    @Column(name = "id_Especialidad")
-    private int especialidadId;
-
     @OneToMany(mappedBy = "medico")
     private List<Cita> citas;
 
     @ManyToOne
-    @JoinColumn(name = "especialidadId_Especialidad")
+    @JoinColumn(name = "especialidad")
     private Especialidad especialidad;
 
     // Constructor
@@ -46,20 +49,22 @@ public class Medico {
     }
 
     // Constructor sobrecargado
-
-    public Medico(int tarjetaProfesional, String nombre, String apellido, String consultorio, String correo,
-            int especialidadId, List<Cita> citas, Especialidad especialidad) {
+    public Medico(Long id, int tarjetaProfesional, String nombre, String apellido, String consultorio, String correo,
+            List<Cita> citas, Especialidad especialidad) {
+        this.id = id;
         this.tarjetaProfesional = tarjetaProfesional;
         this.nombre = nombre;
         this.apellido = apellido;
         this.consultorio = consultorio;
         this.correo = correo;
-        this.especialidadId = especialidadId;
         this.citas = citas;
         this.especialidad = especialidad;
     }
 
     // Getters
+    public Long getId() {
+        return id;
+    }
 
     public int getTarjetaProfesional() {
         return tarjetaProfesional;
@@ -81,10 +86,6 @@ public class Medico {
         return correo;
     }
 
-    public int getEspecialidadId() {
-        return especialidadId;
-    }
-
     public List<Cita> getCitas() {
         return citas;
     }
@@ -94,6 +95,9 @@ public class Medico {
     }
 
     // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setTarjetaProfesional(int tarjetaProfesional) {
         this.tarjetaProfesional = tarjetaProfesional;
@@ -115,15 +119,18 @@ public class Medico {
         this.correo = correo;
     }
 
-    public void setEspecialidadId(int especialidadId) {
-        this.especialidadId = especialidadId;
-    }
-
     public void setCitas(List<Cita> citas) {
         this.citas = citas;
     }
 
     public void setEspecialidad(Especialidad especialidad) {
         this.especialidad = especialidad;
-    } 
+    }
+
+    // Override
+    @Override
+    public String toString() {
+        return "Medico [id=" + id + ", tarjetaProfesional=" + tarjetaProfesional + ", nombre=" + nombre + ", apellido="
+                + apellido + ", consultorio=" + consultorio + ", correo=" + correo +  ", citas=" + citas + ", especialidad=" + especialidad + "]";
+    }
 }

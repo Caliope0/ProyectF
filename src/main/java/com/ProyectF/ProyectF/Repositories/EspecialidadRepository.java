@@ -12,5 +12,5 @@ import com.ProyectF.ProyectF.Models.Especialidad;
 @RepositoryRestResource(collectionResourceRel = "especialidades", path = "especialidades")
 @CrossOrigin(origins="http://localhost:3000")
 
-public interface EspecialidadRepository extends PagingAndSortingRepository <Especialidad, Integer>, CrudRepository<Especialidad, Integer> {
+public interface EspecialidadRepository extends PagingAndSortingRepository <Especialidad, Long>, CrudRepository<Especialidad, Long> {
 }

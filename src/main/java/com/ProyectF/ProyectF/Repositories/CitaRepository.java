@@ -14,5 +14,5 @@ import com.ProyectF.ProyectF.Models.Cita;
 @RepositoryRestResource(collectionResourceRel = "citas", path = "citas")
 @CrossOrigin(origins="http://localhost:3000")
 
-public interface CitaRepository extends PagingAndSortingRepository <Cita, Integer>, CrudRepository<Cita, Integer> {
+public interface CitaRepository extends PagingAndSortingRepository <Cita, Long>, CrudRepository<Cita, Long> {
 }

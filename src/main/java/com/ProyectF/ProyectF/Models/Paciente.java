@@ -4,6 +4,8 @@ package com.ProyectF.ProyectF.Models;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -16,6 +18,10 @@ import java.util.List;
 public class Paciente {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column ( unique = true, nullable = false )
+    private Long id;
+
     @Column(name = "cedula")
     private int cedula;
 
@@ -40,9 +46,9 @@ public class Paciente {
     }
 
     // Constructor sobrecargado
-
-    public Paciente(int cedula, String nombre, String apellido, LocalDateTime fechaNacimiento, String telefono,
+    public Paciente(Long id, int cedula, String nombre, String apellido, LocalDateTime fechaNacimiento, String telefono,
             List<Cita> citas) {
+        this.id = id;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -52,6 +58,9 @@ public class Paciente {
     }
 
     // Getters
+    public Long getId() {
+        return id;
+    }
 
     public int getCedula() {
         return cedula;
@@ -77,7 +86,10 @@ public class Paciente {
         return citas;
     }
 
-    //Setters
+    //  Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setCedula(int cedula) {
         this.cedula = cedula;
@@ -101,5 +113,12 @@ public class Paciente {
 
     public void setCitas(List<Cita> citas) {
         this.citas = citas;
-    }   
+    }
+
+    // Override
+    @Override
+    public String toString() {
+        return "Paciente [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
+                + ", fechaNacimiento=" + fechaNacimiento + ", telefono=" + telefono + ", citas=" + citas + "]";
+    } 
 }

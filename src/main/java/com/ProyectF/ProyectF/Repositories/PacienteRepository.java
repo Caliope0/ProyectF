@@ -12,5 +12,5 @@ import com.ProyectF.ProyectF.Models.Paciente;
 @RepositoryRestResource(collectionResourceRel = "pacientes", path = "pacientes")
 @CrossOrigin(origins="http://localhost:3000")
 
-public interface PacienteRepository extends PagingAndSortingRepository <Paciente, Integer>, CrudRepository<Paciente, Integer> {
+public interface PacienteRepository extends PagingAndSortingRepository <Paciente, Long>, CrudRepository<Paciente, Long> {
 }

@@ -2,6 +2,8 @@ package com.ProyectF.ProyectF.Models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,8 +16,12 @@ import java.time.LocalDateTime;
 public class Cita {
 
     @Id
-    @Column(name = "id_Cita")
-    private int idCita;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
+    private Long id;
+
+    @Column(name = "Cita")
+    private int cita;
 
     @Column(name = "fecha")
     private LocalDateTime fecha;
@@ -29,23 +35,25 @@ public class Cita {
     private Medico medico;
 
     // Constructor
-
-    public Cita() {
+    public Cita (){    
     }
 
     // Constructor sobrecargado
-
-    public Cita(int idCita, LocalDateTime fecha, Paciente paciente, Medico medico) {
-        this.idCita = idCita;
+    public Cita(Long id, int cita, LocalDateTime fecha, Paciente paciente, Medico medico) {
+        this.id = id;
+        this.cita = cita;
         this.fecha = fecha;
         this.paciente = paciente;
         this.medico = medico;
     }
 
     // Getters
+    public Long getId() {
+        return id;
+    }
 
-    public int getIdCita() {
-        return idCita;
+    public int getCita() {
+        return cita;
     }
 
     public LocalDateTime getFecha() {
@@ -61,9 +69,12 @@ public class Cita {
     }
 
     // Setters
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public void setIdCita(int idCita) {
-        this.idCita = idCita;
+    public void setCita(int cita) {
+        this.cita = cita;
     }
 
     public void setFecha(LocalDateTime fecha) {
@@ -77,4 +88,11 @@ public class Cita {
     public void setMedico(Medico medico) {
         this.medico = medico;
     }
+
+    // Override
+    @Override
+    public String toString() {
+        return "Cita [id=" + id + ", cita=" + cita + ", fecha=" + fecha + ", paciente=" + paciente + ", medico="
+                + medico + "]";
+    }    
 }

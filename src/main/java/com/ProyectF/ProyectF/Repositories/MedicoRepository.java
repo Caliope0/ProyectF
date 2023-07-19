@@ -14,5 +14,5 @@ import com.ProyectF.ProyectF.Models.Medico;
 @RepositoryRestResource(collectionResourceRel = "medicos", path = "medicos")
 @CrossOrigin(origins="http://localhost:3000")
 
-public interface MedicoRepository extends PagingAndSortingRepository <Medico, Integer>, CrudRepository<Medico, Integer> {
+public interface MedicoRepository extends PagingAndSortingRepository <Medico, Long>, CrudRepository<Medico, Long> {
 }
