@@ -10,7 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 import java.util.List;
 
 @Entity
@@ -32,7 +33,7 @@ public class Paciente {
     private String apellido;
 
     @Column(name = "fecha_nacimiento")
-    private LocalDateTime fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @Column(name = "telefono")
     private String telefono;
@@ -46,7 +47,7 @@ public class Paciente {
     }
 
     // Constructor sobrecargado
-    public Paciente(Long id, int cedula, String nombre, String apellido, LocalDateTime fechaNacimiento, String telefono,
+    public Paciente(Long id, int cedula, String nombre, String apellido, LocalDate fechaNacimiento, String telefono,
             List<Cita> citas) {
         this.id = id;
         this.cedula = cedula;
@@ -74,7 +75,7 @@ public class Paciente {
         return apellido;
     }
 
-    public LocalDateTime getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -103,7 +104,7 @@ public class Paciente {
         this.apellido = apellido;
     }
 
-    public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

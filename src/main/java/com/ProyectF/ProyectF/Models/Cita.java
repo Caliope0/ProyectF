@@ -9,7 +9,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "cita")
@@ -24,7 +25,7 @@ public class Cita {
     private int cita;
 
     @Column(name = "fecha")
-    private LocalDateTime fecha;
+    private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "cedula_Paciente")
@@ -39,7 +40,7 @@ public class Cita {
     }
 
     // Constructor sobrecargado
-    public Cita(Long id, int cita, LocalDateTime fecha, Paciente paciente, Medico medico) {
+    public Cita(Long id, int cita, LocalDate fecha, Paciente paciente, Medico medico) {
         this.id = id;
         this.cita = cita;
         this.fecha = fecha;
@@ -56,7 +57,7 @@ public class Cita {
         return cita;
     }
 
-    public LocalDateTime getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
@@ -77,7 +78,7 @@ public class Cita {
         this.cita = cita;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
